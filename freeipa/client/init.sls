@@ -100,7 +100,7 @@ freeipa_client_install:
   cmd.run:
     - name: >
         ipa-client-install
-        --server {{ client.server }}
+        {%- if client.server is defined %} --server {{ client.server }}{%- endif %}
         --domain {{ client.domain }}
         {%- if client.realm is defined %} --realm {{ client.realm }}{%- endif %}
         --hostname {{ ipa_host }}
